@@ -14,7 +14,7 @@ This harness sets up dynaguppy using [Vagrant](vagrant) to provisions virtual ma
 The Puppet bootstrap scripts in the `bootstrap` directory are from from the [Vagrant](vagrant) [puppet-bootstrap scripts](bootstraps) provided by [Hashicorp](http://www.hashicorp.com/).
 [bootstraps]:https://github.com/hashicorp/puppet-bootstrap
 
-The current `Vagrantfile` is configured to use the box [Ubuntu NoCM Virtualbox](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box) from the [PuppetLabs box repository](http://puppet-vagrant-boxes.puppetlabs.com/)
+The current `Vagrantfile` is configured to use the [Ubuntu NoCM Virtualbox box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box) from the [PuppetLabs box repository](http://puppet-vagrant-boxes.puppetlabs.com/)
 
 ## Getting started
 
@@ -30,6 +30,11 @@ git clone https://github.com/Aethylred/dynaguppy-harness.git
 ```
 cd dynaguppy-harness
 ``` 
+1. Initialise the dynaguppy-harness git submodules:  
+```
+git submodule sync
+git submodule update --init --recursive
+```
 1. Clone dynaguppy:
 ```
 git clone https://github.com/Aethylred/dynaguppy.git etc-puppet
