@@ -16,16 +16,40 @@ The Puppet bootstrap scripts in the `bootstrap` directory are from from the [Vag
 
 The current `Vagrantfile` is configured to use the box [Ubuntu NoCM Virtualbox](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box) from the [PuppetLabs box repository](http://puppet-vagrant-boxes.puppetlabs.com/)
 
-## Using the current Vagrant configuration
+## Getting started
 
 1. Add the Vagrant box to your collection:   
 ```
 vagrant box add ubuntu-64-x64-vbox4210-nocm http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box
+```
+1. Clone the dynaguppy-harness:  
+```
+git clone https://github.com/Aethylred/dynaguppy-harness.git
+```
+1. Change into the dynaguppy-harness working directory:  
+```
+cd dynaguppy-harness
 ``` 
-1.  Start the box:  
+1. Clone dynaguppy:
+```
+git clone https://github.com/Aethylred/dynaguppy.git etc-puppet
+```
+1. Start the box:  
 ```
 vagrant up
 ```
+
+# Questions & Answers
+
+#### Why isn't dynaguppy a submodule?
+
+In developing dynaguppy it was necessary to build the test harness, but not have it tied to a specific version or branch of dynaguppy. It was undesirable that endless and probably accidental commits that update, change, or otherwise tweak dynaguppy become part of dynaguppy-harness.
+
+It will also make dynaguppy-harness more useful to other contributors as it allows them to use their own forks and variants of dynaguppy. It may even allow the dynaguppy-harness to be used for the testing and development of other Puppet configurations. Alternatively, `etc-puppet` can be created as an empty directory that exposes a VM's `/etc/puppet`, which is what was done to dynaguppy to get its initial contents.
+
+#### Why is dynaguppy in `.gitignore`?
+
+Give that it is undesirable that dynaguppy is a submodule, nor is it desirable that it is accidentally included in git commits.
 
 # Licensing
 

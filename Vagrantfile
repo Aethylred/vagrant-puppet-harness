@@ -41,6 +41,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder './etc-puppet', '/etc/puppet'
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -49,7 +50,7 @@ Vagrant.configure("2") do |config|
    config.vm.provider :virtualbox do |vb|
      # Don't boot with headless mode
      vb.gui   = true
-     vb.name  = "Dynaguppy: puppet.local"
+     vb.name  = "Dynaguppy puppet.local"
   
      # Use VBoxManage to customize the VM. For example to change memory:
      vb.customize ["modifyvm", :id, "--memory", "1024"]

@@ -30,3 +30,4 @@ _ReSharper*/
 .project
 .vagrant/
 *~
+etc-puppet/
