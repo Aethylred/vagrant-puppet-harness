@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder 'etc-puppet', '/etc/puppet'
 
   # Set up hostname, this breaks things for some reason!
-  # config.vm.hostname = "puppet.local"
+  config.vm.hostname = "puppet.local"
 
   # Change boot timeout
   config.vm.boot_timeout = 120

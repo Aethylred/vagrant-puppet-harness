@@ -1,6 +1,6 @@
 # dynaguppy-harness
 
-This is a Vagrant based development and testing harness for the [dynaguppy](dynaguppy) project. It
+This is a Vagrant based development and testing harness for the [dynaguppy](dynaguppy) project. It bootstraps the installation of puppet and mounts the content of the `etc-puppet` in `/etc/puppet` of the Vagrant guest.
 [dynaguppy]:https://github.com/Aethylred/dynaguppy
 
 # Vagrant
@@ -18,7 +18,7 @@ The current `Vagrantfile` is configured to use the [Ubuntu NoCM Virtualbox box](
 
 ## Getting started
 
-1. Add the Vagrant box to your collection:   
+1. Add the Vagrant box to your collection:  
 ```
 vagrant box add ubuntu-64-x64-vbox4210-nocm http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box
 ```
@@ -35,13 +35,34 @@ cd dynaguppy-harness
 git submodule sync
 git submodule update --init --recursive
 ```
-1. Clone dynaguppy:
+1. Clone dynaguppy (or another puppet configuration):
 ```
 git clone https://github.com/Aethylred/dynaguppy.git etc-puppet
 ```
 1. Start the box:  
 ```
 vagrant up
+```
+1. Log into the box as root (it's configured to use Vagrant's default connection on `127.0.0.1:2222`)
+1. Check and/or install dependent Puppet modules.
+1. Run the mounted puppet configuration (assuming a standard Puppet directory structure):  
+```
+puppet apply /etc/puppet/manifests/site.pp
+```
+
+# Installing Puppet Modules
+
+This harness has been shown to work well with a number of methods of loading Puppet module dependencies. Methods that have been tested are:
+
+* Include a `Puppetfile` and use [`librarian-puppet`](https://github.com/rodjek/librarian-puppet)
+* Add Puppet modules as git submodules and run:  
+```
+git submodule sync
+git submodule update --init --recursive
+```
+* Pull the modules down from the [Puppet Forge](http://forge.puppetlabs.com/) with:  
+```
+puppet module install <module>
 ```
 
 # Questions & Answers
@@ -52,9 +73,9 @@ In developing dynaguppy it was necessary to build the test harness, but not have
 
 It will also make dynaguppy-harness more useful to other contributors as it allows them to use their own forks and variants of dynaguppy. It may even allow the dynaguppy-harness to be used for the testing and development of other Puppet configurations. Alternatively, `etc-puppet` can be created as an empty directory that exposes a VM's `/etc/puppet`, which is what was done to dynaguppy to get its initial contents.
 
-#### Why is dynaguppy in `.gitignore`?
+#### Why is etc-puppet in `.gitignore`?
 
-Give that it is undesirable that dynaguppy is a submodule, nor is it desirable that it is accidentally included in git commits.
+Give that it is undesirable that etc-puppet is a submodule, nor is it desirable that it is accidentally included in git commits.
 
 # Licensing
 
