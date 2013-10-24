@@ -11,8 +11,7 @@ This harness sets up dynaguppy using [Vagrant](vagrant) to provisions virtual ma
 
 ## Vagrant Puppet Bootstrap Scripts
 
-The Puppet bootstrap scripts in the `bootstrap` directory are from from the [Vagrant](vagrant) [puppet-bootstrap scripts](bootstraps) provided by [Hashicorp](http://www.hashicorp.com/).
-[bootstraps]:https://github.com/hashicorp/puppet-bootstrap
+The Puppet bootstrap scripts in the `bootstrap` directory are from from the [Vagrant](vagrant) [puppet-bootstrap scripts](https://github.com/hashicorp/puppet-bootstrap) provided by [Hashicorp](http://www.hashicorp.com/).
 
 The current `Vagrantfile` is configured to use the [Ubuntu NoCM Virtualbox box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box) from the [PuppetLabs box repository](http://puppet-vagrant-boxes.puppetlabs.com/)
 
