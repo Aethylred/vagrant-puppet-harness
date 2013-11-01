@@ -22,6 +22,7 @@ Vagrant.configure("2") do |config|
 
   # Forwarded port mapping 
   # config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 8140, host: 8140
 
   # Create a private network
   # config.vm.network :private_network, ip: "192.168.33.10"
