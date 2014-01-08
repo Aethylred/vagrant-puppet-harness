@@ -19,7 +19,7 @@ The current `Vagrantfile` is configured to use the [Ubuntu NoCM Virtualbox box](
 
 1. Add the Vagrant box to your collection:  
 ```
-vagrant box add ubuntu-64-x64-vbox4210-nocm http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box
+vagrant box add ubuntu-12042-x64-vbox4210-nocm http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box
 ```
 1. Clone the dynaguppy-harness:  
 ```
