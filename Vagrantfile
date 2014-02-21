@@ -12,7 +12,11 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu-12042-x64-vbox4210-nocm"
  
   # Share an additional folders to the guest VM.
-  config.vm.synced_folder 'etc-puppet', '/etc/puppet'
+  config.vm.synced_folder 'etc-puppet', '/etc/puppet',
+    owner:  'root',
+    group:  'root',
+    create: true,
+    mount_options: ['dmode=775','fmode=664']
 
   # Set up hostname, this breaks things for some reason!
   config.vm.hostname = "puppet.local"
