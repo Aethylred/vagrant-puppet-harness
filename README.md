@@ -60,6 +60,11 @@ Install the modules to be tested into `/etc/puppet/modules` either from within t
 puppet apply /etc/puppet/modules/<name>/tests/init.pp
 ```
 
+*Note:* When using librarian-puppet it may be necessary to change the location of the cache directory (default is `/etc/puppet/.tmp`) so that it is not inside the shared directory. Use the follwing command:  
+```
+librarian-puppet config tmp /tmp/librarian-puppet --global
+```
+
 # Installing Puppet Modules
 
 This harness has been shown to work well with a number of methods of loading Puppet module dependencies. Methods that have been tested are:
