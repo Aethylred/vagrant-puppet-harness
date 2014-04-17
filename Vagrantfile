@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu-12042-x64-vbox4210-nocm"
+  config.vm.box = "ubuntu-1310-x64-virtualbox-nocm"
  
   # Share an additional folders to the guest VM.
   config.vm.synced_folder 'etc-puppet', '/etc/puppet',
@@ -38,11 +38,18 @@ Vagrant.configure("2") do |config|
   # Bootstrap puppet installation
   config.vm.provision :shell, :path => 'bootstrap/ubuntu.sh'
 
+  # Install packages for rspec-puppet and librarian-puppet
+  # run bundle in your module directory if it has a Gemfile
+  config.vm.provision :shell,
+    inline: 'apt-get -q -y install git ruby1.9.1-dev ruby-dev pkg-config libxml2-dev libxslt-dev ruby-bundler augeas-tools augeas-lenses libaugeas-dev libaugeas-ruby1.9.1 libaugeas-ruby rubygems joe > /dev/null'
+  config.vm.provision :shell,
+    inline: 'gem install --no-ri --no-rdoc librarian-puppet rake'
+
   # VirtualBox specific configuration
    config.vm.provider :virtualbox do |vb|
      # Don't boot with headless mode
      vb.gui   = false
-     vb.name  = "Dynaguppy puppet.local"
+     vb.name  = "Vagrant Puppet Harness puppet.local"
   
      # Use VBoxManage to customize the VM. For example to change memory:
      vb.customize ["modifyvm", :id, "--memory", "1024"]
