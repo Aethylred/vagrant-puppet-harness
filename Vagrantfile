@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu-1310-x64-virtualbox-nocm"
+  config.vm.box = 'ubuntu-12042-x64-vbox4210-nocm'
  
   # Share an additional folders to the guest VM.
   config.vm.synced_folder 'etc-puppet', '/etc/puppet',
@@ -26,7 +26,6 @@ Vagrant.configure("2") do |config|
 
   # Forwarded port mapping 
   # config.vm.network :forwarded_port, guest: 80, host: 8080
-  config.vm.network :forwarded_port, guest: 8140, host: 8140
 
   # Create a private network
   # config.vm.network :private_network, ip: "192.168.33.10"
@@ -41,20 +40,34 @@ Vagrant.configure("2") do |config|
   # Install packages for rspec-puppet and librarian-puppet
   # run bundle in your module directory if it has a Gemfile
   config.vm.provision :shell,
-    inline: 'apt-get -q -y install git ruby1.9.1-dev ruby-dev pkg-config libxml2-dev libxslt-dev ruby-bundler augeas-tools augeas-lenses libaugeas-dev libaugeas-ruby1.9.1 libaugeas-ruby rubygems joe > /dev/null'
+    inline: 'apt-get -q -y install git ruby1.9.1-dev ruby-dev pkg-config libxml2-dev libxslt-dev ruby-bundler augeas-tools augeas-lenses libaugeas-dev libaugeas-ruby1.9.1 libaugeas-ruby rake rubygems joe > /dev/null'
   config.vm.provision :shell,
-    inline: 'gem install --no-ri --no-rdoc librarian-puppet rake'
+    inline: 'gem install --no-ri --no-rdoc librarian-puppet'
 
   # VirtualBox specific configuration
-   config.vm.provider :virtualbox do |vb|
-     # Don't boot with headless mode
-     vb.gui   = false
-     vb.name  = "Vagrant Puppet Harness puppet.local"
-  
-     # Use VBoxManage to customize the VM. For example to change memory:
-     vb.customize ["modifyvm", :id, "--memory", "1024"]
-     vb.customize ["modifyvm", :id, "--ioapic", "on"]
-     vb.customize ["modifyvm", :id, "--cpus", "2"] 
-   end
+  config.vm.provider :virtualbox do |vb|
+    # Don't boot with headless mode
+    vb.gui   = false
+    vb.name  = "Vagrant Puppet Harness puppet.local"
+
+    # Use VBoxManage to customize the VM. For example to change memory:
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+    vb.customize ["modifyvm", :id, "--ioapic", "on"]
+    vb.customize ["modifyvm", :id, "--cpus", "2"] 
+  end
+
+  config.vm.provider :vmware_fusion do |v, override|
+    override.vm.box = 'ubuntu-svr-12042-x64-vf503-nocm'
+    v.gui = false
+    v.vmx["memsize"] = "1024"
+    v.vmx["numvcpus"] = "2"
+  end
+
+  config.vm.provider :vmware_workstation do |v, override|
+    override.vm.box = 'ubuntu-svr-12042-x64-vf503-nocm'
+    v.gui = false
+    v.vmx["memsize"] = "1024"
+    v.vmx["numvcpus"] = "2"
+  end
 
 end

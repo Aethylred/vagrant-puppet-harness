@@ -5,20 +5,24 @@ This is a Vagrant based development and testing harness developed for the [dynag
 
 # Vagrant
 
-This harness provisions a virtual machine using [Vagrant](vagrant) with [VirtualBox](vbox), though it could be configured to use a different Vagrant provisioner. Vagrant and VirtualBox will need to be installed and configured for your development and testing environment before the vagrant-puppet-harness can be used.
+This harness provisions a virtual machine using [Vagrant](vagrant) with [VirtualBox](vbox), [VMware Workstation](vmwarews) or [VMware Fusion](vmwarefz), though it could be configured to use a different Vagrant provisioner. VirtualBox, VMware Workstation or VMware Fusion will need to be installed and configured for your development and testing environment before the vagrant-puppet-harness can be used. Vagrant will need to be installed and the [Vagrant VMware plugin](vagrantvmware) licensed if either of the VMware providers are to be used.
 [vagrant]:http://www.vagrantup.com/
 [vbox]:https://www.virtualbox.org/
+[vagrantvmware]:http://www.vagrantup.com/vmware
+[vmwarews]:http://www.vmware.com/products/workstation
+[vmwarefz]:http://www.vmware.com/products/fusion
 
 ## Vagrant Puppet Bootstrap Scripts
 
 The Puppet bootstrap scripts in the `bootstrap` directory are from from the [Vagrant](vagrant) [puppet-bootstrap scripts](https://github.com/hashicorp/puppet-bootstrap) provided by [Hashicorp](http://www.hashicorp.com/).
 
-The current `Vagrantfile` is configured to use the [Ubuntu NoCM Virtualbox box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box) from the [PuppetLabs box repository](http://puppet-vagrant-boxes.puppetlabs.com/)
+The current `Vagrantfile` is configured to use the [Ubuntu 12.04 NoCM Virtualbox box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-svr-12042-x64-vf503-nocm.box) from the [PuppetLabs box repository](http://puppet-vagrant-boxes.puppetlabs.com/)
 
 ## Getting started
 
-1. Add the Vagrant box to your collection:  
+1. Add the Vagrant boxes to your collection (the first is for VMware, the second for VirtualBox):  
 ```
+vagrant box add ubuntu-svr-12042-x64-vf503-nocm http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-svr-12042-x64-vf503-nocm.box
 vagrant box add ubuntu-12042-x64-vbox4210-nocm http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box
 ```
 1. Clone the vagrant-puppet-harness:  
