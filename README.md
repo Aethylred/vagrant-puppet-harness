@@ -20,32 +20,39 @@ The current `Vagrantfile` is configured to use the [Ubuntu 12.04 NoCM VMware box
 
 ## Getting started
 
-1. Add the Vagrant boxes to your collection (the first is for VMware, the second for VirtualBox):  
-```
-vagrant box add ubuntu-svr-12042-x64-vf503-nocm http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-svr-12042-x64-vf503-nocm.box
-vagrant box add ubuntu-12042-x64-vbox4210-nocm http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box
-```
-1. Clone the vagrant-puppet-harness:  
-```
-git clone https://github.com/Aethylred/vagrant-puppet-harness.git
-```
-1. Change into the vagrant-puppet-harness working directory:  
-```
-cd vagrant-puppet-harness
-``` 
-1. Initialise the vagrant-puppet-harness git submodules:  
-```
-git submodule sync
-git submodule update --init --recursive
-```
-1. Create the `etc-puppet` shared directory (or clone or copy in an alternative Puppet configuration):
-```
-mkdir etc-puppet
-```
+1. Add the Vagrant boxes to your collection (the first is for VMware, the second for VirtualBox):
+
+    ```
+    vagrant box add ubuntu-svr-12042-x64-vf503-nocm http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-svr-12042-x64-vf503-nocm.box
+    vagrant box add ubuntu-12042-x64-vbox4210-nocm http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box
+    ```
+
+1. Clone the vagrant-puppet-harness:
+
+    ```  
+    git clone https://github.com/Aethylred/vagrant-puppet-harness.git
+    ```
+
+1. Change into the vagrant-puppet-harness working directory
+
+    ```
+    cd vagrant-puppet-harness
+    ```
+
+1. Initialise the vagrant-puppet-harness git submodules:
+
+    ```
+    git submodule sync
+    git submodule update --init --recursive
+    ```
+
+1. Edit the `Vagrantfile` for any required changes (e.g. mapping ports, or adding/removing shell commands).
 1. Start the box (this will use the default Vagrant provider):  
-```
-vagrant up
-```
+
+    ```
+    vagrant up
+    ```
+
 1. Log into the box as root (it's configured to use Vagrant's default connection on `127.0.0.1:2222`)
 1. Check and/or install dependent Puppet modules, e.g. by running `librarian-puppet` in `/etc/puppet`.
 1. The virtual machine is now ready for puppet development.
