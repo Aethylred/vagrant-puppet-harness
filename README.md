@@ -16,7 +16,7 @@ This harness provisions a virtual machine using [Vagrant](vagrant) with [Virtual
 
 The Puppet bootstrap scripts in the `bootstrap` directory are from from the [Vagrant](vagrant) [puppet-bootstrap scripts](https://github.com/hashicorp/puppet-bootstrap) provided by [Hashicorp](http://www.hashicorp.com/).
 
-The current `Vagrantfile` is configured to use the [Ubuntu 12.04 NoCM VMeare box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-svr-12042-x64-vf503-nocm.box) or the [Ubuntu 12.04 NoCM Virtualbox box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box) from the [PuppetLabs box repository](http://puppet-vagrant-boxes.puppetlabs.com/). It will load the appropriate box for your provider, the VMware box for VMware Fusion and VMware Workstation, and the VirtualBox box for VirtualBox. Check the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/basic_usage.html) for usage.
+The current `Vagrantfile` is configured to use the [Ubuntu 12.04 NoCM VMware box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-svr-12042-x64-vf503-nocm.box) or the [Ubuntu 12.04 NoCM Virtualbox box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box) from the [PuppetLabs box repository](http://puppet-vagrant-boxes.puppetlabs.com/). It will load the appropriate box for your provider, the VMware box for VMware Fusion and VMware Workstation, and the VirtualBox box for VirtualBox. Check the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/basic_usage.html) for usage.
 
 ## Getting started
 
@@ -64,7 +64,7 @@ Install the modules to be tested into `/etc/puppet/modules` either from within t
 puppet apply /etc/puppet/modules/<name>/tests/init.pp
 ```
 
-*Note:* When using librarian-puppet it may be necessary to change the location of the cache directory (default is `/etc/puppet/.tmp`) so that it is not inside the shared directory. Use the follwing command:  
+*Note:* When using librarian-puppet it may be necessary to change the location of the cache directory (default is `/etc/puppet/.tmp`) so that it is not inside the shared directory. Use the following command:  
 ```
 librarian-puppet config tmp /tmp/librarian-puppet --global
 ```
@@ -94,7 +94,7 @@ This has also made vagrant-puppet-harness more useful as it allows the harness t
 
 #### Why is etc-puppet in `.gitignore`?
 
-Give that it is undesirable that etc-puppet is a submodule, nor is it desirable that it is accidentally included in git commits.
+Given that it is undesirable that etc-puppet is a submodule, nor is it desirable that it is accidentally included in git commits.
 
 # Licensing
 
@@ -102,7 +102,7 @@ This file is part of the vagrant-puppet-harness project.
 
 The vagrant-puppet-harness is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-Foobar is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+The vagrant-puppet-harness is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 A copy of the GNU General Public License is included with vagrant-puppet-harness in the `gpl.txt` file.  If not, see <http://www.gnu.org/licenses/>.
 
