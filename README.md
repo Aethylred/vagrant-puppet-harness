@@ -16,7 +16,7 @@ This harness provisions a virtual machine using [Vagrant](vagrant) with [Virtual
 
 The Puppet bootstrap scripts in the `bootstrap` directory are from from the [Vagrant](vagrant) [puppet-bootstrap scripts](https://github.com/hashicorp/puppet-bootstrap) provided by [Hashicorp](http://www.hashicorp.com/).
 
-The current `Vagrantfile` is configured to use the [Ubuntu 12.04 NoCM Virtualbox box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-svr-12042-x64-vf503-nocm.box) from the [PuppetLabs box repository](http://puppet-vagrant-boxes.puppetlabs.com/)
+The current `Vagrantfile` is configured to use the [Ubuntu 12.04 NoCM VMeare box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-svr-12042-x64-vf503-nocm.box) or the [Ubuntu 12.04 NoCM Virtualbox box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box) from the [PuppetLabs box repository](http://puppet-vagrant-boxes.puppetlabs.com/). It will load the appropriate box for your provider, the VMware box for VMware Fusion and VMware Workstation, and the VirtualBox box for VirtualBox. Check the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/basic_usage.html) for usage.
 
 ## Getting started
 
@@ -42,7 +42,7 @@ git submodule update --init --recursive
 ```
 mkdir etc-puppet
 ```
-1. Start the box:  
+1. Start the box (this will use the default Vagrant provider):  
 ```
 vagrant up
 ```
