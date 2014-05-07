@@ -37,10 +37,13 @@ Vagrant.configure("2") do |config|
   # Bootstrap puppet installation
   config.vm.provision :shell, :path => 'bootstrap/ubuntu.sh'
 
-  # Install packages for rspec-puppet and librarian-puppet
-  # run bundle in your module directory if it has a Gemfile
+  # Install packages for rspec-puppet, run bundle in your module directory if it has a Gemfile to prep for running spec tests.
   config.vm.provision :shell,
     inline: 'apt-get -q -y install git ruby1.9.1-dev ruby-dev pkg-config libxml2-dev libxslt-dev ruby-bundler augeas-tools augeas-lenses libaugeas-dev libaugeas-ruby1.9.1 libaugeas-ruby rake rubygems joe > /dev/null'
+
+  # Install requirements for librarian-puppet
+  config.vm.provision :shell,
+    inline: 'apt-get -q -y install git joe > /dev/null'
   config.vm.provision :shell,
     inline: 'gem install --no-ri --no-rdoc librarian-puppet'
 
