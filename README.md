@@ -16,16 +16,24 @@ This harness provisions a virtual machine using [Vagrant](vagrant) with [Virtual
 
 The Puppet bootstrap scripts in the `bootstrap` directory are from from the [Vagrant](vagrant) [puppet-bootstrap scripts](https://github.com/hashicorp/puppet-bootstrap) provided by [Hashicorp](http://www.hashicorp.com/).
 
-The current `Vagrantfile` is configured to use the [Ubuntu 12.04 NoCM VMware box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-svr-12042-x64-vf503-nocm.box) or the [Ubuntu 12.04 NoCM Virtualbox box](http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box) from the [PuppetLabs box repository](http://puppet-vagrant-boxes.puppetlabs.com/). It will load the appropriate box for your provider, the VMware box for VMware Fusion and VMware Workstation, and the VirtualBox box for VirtualBox. Check the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/basic_usage.html) for usage.
+## Vagrant Boxes
+
+The current `Vagrantfile` is configured to use the [Puppet Labs Vagrant Boxes](https://vagrantcloud.com/puppetlabs) published on [Vagrant Cloud](https://vagrantcloud.com). Starting a VM with `vagrant up` should automatically download the appropriate box.
+
+### Vagrant Box Selection
+
+The `Vagrantfile` can recreate similar VMs using different base boxes. By default an [Ubuntu 12.04 x64](https://vagrantcloud.com/puppetlabs/ubuntu-12.04-64-nocm) is used, but other base boxes can be selected using the command: `vagrant up boxname` where `boxname` is the box to be used. When issuing other commands the same `boxname` will need to be used, e.g. `vagrant destroy boxname`, otherwise vagrant will attempt to control the default box instead.
+
+The supported boxes are:
+
+* `ubuntu-1310` which installs [Ubuntu 13.10 x64](https://vagrantcloud.com/puppetlabs/ubuntu-13.10-64-nocm)
+* `ubuntu-1404` which installs [Ubuntu 14.04 x64](https://vagrantcloud.com/puppetlabs/ubuntu-14.04-64-nocm)
+* `centos-5` which installs [Centos 5.10 x64](https://vagrantcloud.com/puppetlabs/centos-5.10-64-nocm)
+* `centos-6` which installs [Centos 6.5 x64](https://vagrantcloud.com/puppetlabs/centos-6.5-64-nocm)
+
+Note: This is not a multi-box configuration. Only one VM will be started.
 
 ## Getting started
-
-1. Add the Vagrant boxes to your collection (the first is for VMware, the second for VirtualBox):
-
-    ```
-    vagrant box add ubuntu-svr-12042-x64-vf503-nocm http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-svr-12042-x64-vf503-nocm.box
-    vagrant box add ubuntu-12042-x64-vbox4210-nocm http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210-nocm.box
-    ```
 
 1. Clone the vagrant-puppet-harness:
 
@@ -47,14 +55,13 @@ The current `Vagrantfile` is configured to use the [Ubuntu 12.04 NoCM VMware box
     ```
 
 1. Edit the `Vagrantfile` for any required changes (e.g. mapping ports, or adding/removing shell commands).
-1. Start the box (this will use the default Vagrant provider):  
+1. Start the box (this will use the default Vagrant provider and create a default box):  
 
     ```
     vagrant up
     ```
 
 1. Log into the box as root (it's configured to use Vagrant's default connection on `127.0.0.1:2222`)
-1. Check and/or install dependent Puppet modules, e.g. by running `librarian-puppet` in `/etc/puppet`.
 1. The virtual machine is now ready for puppet development.
 
 # Alternative usage
