@@ -69,13 +69,13 @@ Note: This is not a multi-box configuration. Only one VM will be started.
 ## Testing Puppet Manifests
 Instead of creating an empty `etc-puppet` directory copy (or git clone) any existing puppet configuration into `etc-puppet` and run the `site.pp` manifest within the virtual machine with:  
 ```
-puppet apply /etc/puppet/manivests/site.pp
+puppet apply -t /etc/puppet/manifests
 ```
 
 ## Testing Puppet Modules
 Install the modules to be tested into `/etc/puppet/modules` either from within the virtual machine or from the host machine shared directory `etc-puppet/modules`. It is recommended that modules are installed with the `puppet module install` or using [`librarian-puppet`](https://github.com/rodjek/librarian-puppet) as this will install the modules with their dependencies. From there the module test manifests can be run from within the virtual machine with:  
 ```
-puppet apply /etc/puppet/modules/<name>/tests/init.pp
+puppet apply -t /etc/puppet/modules/module_name/tests/init.pp
 ```
 
 *Note:* When using librarian-puppet it may be necessary to change the location of the cache directory (default is `/etc/puppet/.tmp`) so that it is not inside the shared directory. Use the following command:  
