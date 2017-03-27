@@ -19,9 +19,9 @@ Vagrant.configure("2") do |config|
   end
 
   case ARGV[1]
-  when 'ubuntu-1310'
+  when 'ubuntu-1604'
     ubuntu            = true
-    box               = 'puppetlabs/ubuntu-13.10-64-nocm'
+    box               = 'puppetlabs/ubuntu-16.04-64-nocm'
     rspec_packages    = 'ruby-dev pkg-config libxml2-dev libxslt1-dev ruby-bundler augeas-tools augeas-lenses libaugeas-dev libaugeas-ruby rake rubygems'
     librarian_deps    = 'git'
     librarian_gems    = 'librarian-puppet'
@@ -33,6 +33,14 @@ Vagrant.configure("2") do |config|
     rspec_packages    = 'ruby-dev pkg-config libxml2-dev libxslt1-dev ruby-bundler augeas-tools augeas-lenses libaugeas-dev libaugeas-ruby rake'
     librarian_deps    = 'git'
     librarian_gems    = 'librarian-puppet'
+    editor_packages   = 'joe'
+    boot_wait         = 120
+  when 'centos-7'
+    centos  = true
+    box     = 'puppetlabs/centos-7.2-64-nocm'
+    rspec_packages    = 'ruby-devel'
+    librarian_deps    = 'git'
+    librarian_gems    = 'librarian-puppet -v 1.0.3'
     editor_packages   = 'joe'
     boot_wait         = 120
   when 'centos-6'
@@ -96,6 +104,8 @@ Vagrant.configure("2") do |config|
         puppet_local.vm.provision :shell, :path => 'bootstrap/centos_5_x.sh'
       when 'centos-6'
         puppet_local.vm.provision :shell, :path => 'bootstrap/centos_6_x.sh'
+      when 'centos-7'
+        puppet_local.vm.provision :shell, :path => 'bootstrap/centos_7_x.sh'
       end
       # puts 'Install packages for rspec-puppet'
       # run bundle in your module directory if it has a Gemfile to prep for running spec tests.
